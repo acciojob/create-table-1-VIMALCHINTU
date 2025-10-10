@@ -1,79 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Insert Row at Top</title>
-  <style>
-    body { font-family: system-ui, sans-serif; padding: 24px; }
-    button { padding: 8px 14px; border: 1px solid #333; background: #fff; cursor: pointer; }
-    table { border-collapse: collapse; width: 100%; margin-top: 12px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background: #f5f5f5; }
-  </style>
+  <meta charset="utf-8" /> 
+  <title>Insert row in a table</title> 
 </head>
 <body>
-  <button id="insertBtn">Insert row</button>
-
-  <table id="myTable">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td><td>Asha</td><td>Designer</td><td>Initial row</td>
-      </tr>
-      <tr>
-        <td>2</td><td>Ravi</td><td>Developer</td><td>Initial row</td>
-      </tr>
-      <tr>
-        <td>3</td><td>Maya</td><td>PM</td><td>Initial row</td>
-      </tr>
-    </tbody>
-  </table>
-
+  <table id="sampleTable" border="1"> 
+    <tr><td>Row1 cell1</td><td>Row1 cell2</td></tr> 
+    <tr><td>Row2 cell1</td><td>Row2 cell2</td></tr> 
+  </table><br> 
+  
+  <input type="button" onclick="insert_Row()" value="Insert row">  
+  
   <script>
-    const btn = document.getElementById('insertBtn');
-    const table = document.getElementById('myTable');
-    const tbody = table.querySelector('tbody');
+    function insert_Row() {
+      const table = document.getElementById("sampleTable");
 
-    function getNextIndex() {
-      // Read current max index from first column and increment
-      const rows = Array.from(tbody.rows);
-      const indices = rows.map(r => parseInt(r.cells[0].textContent, 10)).filter(Number.isFinite);
-      const max = indices.length ? Math.max(...indices) : 0;
-      return max + 1;
+      // create new row and cells
+      const tr = document.createElement("tr");
+      const td1 = document.createElement("td");
+      td1.textContent = "New Cell1";
+      const td2 = document.createElement("td");
+      td2.textContent = "New Cell2";
+
+      tr.append(td1, td2);
+
+      // insert at the top (index 0) of the table
+      table.insertBefore(tr, table.rows[0]);
     }
-
-    btn.addEventListener('click', () => {
-      const nextIndex = getNextIndex();
-
-      // Create a new row
-      const tr = document.createElement('tr');
-
-      // Define default cell values
-      const cells = [
-        nextIndex,        // #
-        'New User',       // Name
-        'New Role',       // Role
-        'Added at top'    // Notes
-      ];
-
-      // Append cells
-      cells.forEach(val => {
-        const td = document.createElement('td');
-        td.textContent = val;
-        tr.appendChild(td);
-      });
-
-      // Insert at top of tbody
-      tbody.insertBefore(tr, tbody.firstElementChild);
-    });
   </script>
 </body>
 </html>
