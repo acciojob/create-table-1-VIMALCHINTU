@@ -1,43 +1,48 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Create Table 1</title>
-		<style>
-			#table,td{
-				border:solid
-			}
-		</style>
-	</head>
-	<body>
-		<table id="table">
-			<tr>
-				<td>Row1 cell1</td>
-				<td>Row1 cell2</td>
-				
-			</tr>
-			<tr>
-				<td>Row2 cell1</td>
-				<td>Row2 cell2</td>
-				
-			</tr>
-		</table>
-		<button style="margin-top:10px" onclick="btn()">Insert row</button>
-		<script>
-			const table=document.getElementById("table")
-			function btn() {
-				const tr=document.createElement("tr")
-				const td1=document.createElement("td")
-				td1.textContent=`New Cell1`
-				const td2=document.createElement("td")
-				td2.textContent=`New Cell2`
-				tr.append(td1,td2)
-				table.prepend(tr)
-				
-				
-				
-			}
-		</script>
-		
-	</body>
-	
+<head>
+  <title>Insert Row at Top</title>
+  <style>
+    table, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <table id="sampleTable">
+    <tr>
+      <td>Row1 cell1</td>
+      <td>Row1 cell2</td>
+    </tr>
+    <tr>
+      <td>Row2 cell1</td>
+      <td>Row2 cell2</td>
+    </tr>
+  </table>
+
+  <br>
+  <button onclick="insert_Row()">Insert row</button>
+
+  <script>
+    function insert_Row() {
+      // Get the table by its ID
+      let table = document.getElementById("sampleTable");
+
+      // Insert a new row at the top (index 0)
+      let newRow = table.insertRow(0);
+
+      // Create two cells
+      let cell1 = newRow.insertCell(0);
+      let cell2 = newRow.insertCell(1);
+
+      // Add text content
+      cell1.textContent = "New Cell1";
+      cell2.textContent = "New Cell2";
+    }
+  </script>
+
+</body>
 </html>
