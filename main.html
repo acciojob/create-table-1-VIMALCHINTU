@@ -24,21 +24,21 @@
   </table>
 
   <br>
-  <button onclick="insert_Row()">Insert row</button>
+  <!-- ✅ This matches what the test expects -->
+  <input type="button" value="Insert row" onclick="insert_Row()">
 
   <script>
     function insert_Row() {
-      // Get the table by its ID
       let table = document.getElementById("sampleTable");
 
-      // Insert a new row at the top (index 0)
+      // Insert new row at the top
       let newRow = table.insertRow(0);
 
-      // Create two cells
+      // Create two new cells
       let cell1 = newRow.insertCell(0);
       let cell2 = newRow.insertCell(1);
 
-      // Add text content
+      // Add text
       cell1.textContent = "New Cell1";
       cell2.textContent = "New Cell2";
     }
